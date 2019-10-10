@@ -39,5 +39,13 @@ def encrypt_caesar(plaintext: str) -> str:
     ''
     """
     # PUT YOUR CODE HERE
+    for i in plaintext:
+        x = ord(i)
+        if (x > 64 and x < 123):
+            if (63 < x < 65) or (x < 99 and x > 96):
+                x = x + 26
+            y = chr(x - 3)
+            plaintext = plaintext.replace(i, y)
+            print(plaintext)
     
     return plaintext
