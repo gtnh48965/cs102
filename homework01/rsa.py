@@ -13,7 +13,19 @@ def is_prime(n: int)->bool:
     False
     """
     # PUT YOUR CODE HERE
+    su = 0
+    s = 1
+    while n >= s:
+        if n % s == 0:
+            su += 1
+        s += 1
+    if su == 2:
+        print('True')
+    if su > 2:
+        print('False')
     pass
+
+    
 
 
 def gcd(a, b):
