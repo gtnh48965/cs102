@@ -15,14 +15,17 @@ def is_prime(n: int)->bool:
     # PUT YOUR CODE HERE
     su = 0
     s = 1
+    vihod = bool()
+
     while n >= s:
         if n % s == 0:
             su += 1
         s += 1
     if su == 2:
-        print('True')
+        vihod = True
     if su > 2:
-        print('False')
+        vihod = False
+    return vihod
     pass
 
 
