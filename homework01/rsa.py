@@ -1,7 +1,7 @@
 import random
 
 
-def is_prime(n: int)->bool:
+def is_prime(n: int) -> bool:
     """
     Tests to see if a number is prime.
 
@@ -26,7 +26,7 @@ def is_prime(n: int)->bool:
     if su > 2:
         vihod = False
     return vihod
-    pass
+
 
 
 
@@ -48,7 +48,7 @@ def gcd(a: int, b: int) -> int:
          b = b - a
 
     print(a)
-    pass
+    return
 
 
 def multiplicative_inverse(e, phi):
@@ -60,7 +60,23 @@ def multiplicative_inverse(e, phi):
     23
     """
     # PUT YOUR CODE HERE
-    pass
+    b = e
+    a = phi
+    mass = []
+    x = 0
+    y = 1
+    while a % b != 0:
+        mass.append(a // b)
+        z = a
+        a = b
+        b = z % b
+
+    for i in range(len(mass[::-1])):
+           z = x
+           x = y
+           y = z - y * mass[i]
+    phi = y % phi
+    return phi
 
 
 def generate_keypair(p, q):
