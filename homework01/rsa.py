@@ -15,17 +15,17 @@ def is_prime(n: int) -> bool:
     # PUT YOUR CODE HERE
     su = 0
     s = 1
-    vihod = bool()
+    exit = bool()
 
     while n >= s:
         if n % s == 0:
             su += 1
         s += 1
     if su == 2:
-        vihod = True
+        exit = True
     if su > 2:
-        vihod = False
-    return vihod
+        exit = False
+    return exit
 
 
 
@@ -41,14 +41,13 @@ def gcd(a: int, b: int) -> int:
     """
     # PUT YOUR CODE HERE
 
-    while a < b or a > b:
+    while a != b:
       if a > b:
          a = a-b
-      if a < b:
+      else:
          b = b - a
 
-    print(a)
-    return
+    return b
 
 
 def multiplicative_inverse(e, phi):
