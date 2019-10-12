@@ -13,19 +13,18 @@ def is_prime(n: int) -> bool:
     False
     """
     # PUT YOUR CODE HERE
-    su = 0
-    s = 1
-    exit = bool()
 
-    while n >= s:
-        if n % s == 0:
-            su += 1
-        s += 1
-    if su == 2:
-        exit = True
-    if su > 2:
-        exit = False
-    return exit
+    if n == 2 or n == 3:
+        return True
+
+    if n % 2 == 0 or n < 2:
+        return False
+
+
+    for j in range(3,int(n**2)+1,2):
+      if n % j == 0:
+        return True
+    return
 
 
 
@@ -47,7 +46,7 @@ def gcd(a: int, b: int) -> int:
       else:
          b = b - a
 
-    return b
+    return
 
 
 def multiplicative_inverse(e, phi):
