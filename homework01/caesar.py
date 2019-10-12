@@ -13,39 +13,38 @@ def encrypt_caesar(plaintext: str) -> str:
     """
     # PUT YOUR CODE HERE
     for i in plaintext:
-        x = ord(i)
-        if (x > 64 and x < 123):
-            if (87 < x < 91) or (x < 123 and x > 119):
-                x = x - 26
-            y = chr(x + 3)
-            plaintext = plaintext.replace(i, y)
-            print(plaintext)
-return plaintext
 
-    
+        if ('a' <= i <= 'z') or ('A' <= i <= 'Z'):
+            if ('a' <= i <= 'w') or ('A' <= i <= 'W'):
+                y = chr(ord(i) + 3)
+            else:
+                y = chr(ord(i) - 23)
+        else:
+            i += y
+        plaintext = plaintext.replace(i, y)
 
+    return plaintext
 
-def encrypt_caesar(plaintext: str) -> str:
+def decrypt_caesar(ciphertext: str) -> str:
     """
-        Encrypts plaintext using a Caesar cipher.
-
-    >>> encrypt_caesar("PYTHON")
-    'SBWKRQ'
-    >>> encrypt_caesar("python")
-    'sbwkrq'
-    >>> encrypt_caesar("Python3.6")
-    'Sbwkrq3.6'
-    >>> encrypt_caesar("")
+     >>> decrypt_caesar("SBWKRQ")
+    'PYTHON'
+     >>> decrypt_caesar("sbwkrq")
+     'python'
+     >>> decrypt_caesar("Sbwkrq3.6")
+     'Python3.6'
+    >>> decrypt_caesar("")
     ''
     """
     # PUT YOUR CODE HERE
-    for i in plaintext:
-        x = ord(i)
-        if (x > 64 and x < 123):
-            if (63 < x < 65) or (x < 99 and x > 96):
-                x = x + 26
-            y = chr(x - 3)
-            plaintext = plaintext.replace(i, y)
-            print(plaintext)
-    
-    return plaintext
+    for i in ciphertext:
+
+        if ('a' <= i <= 'z') or ('A' <= i <= 'Z'):
+            if ('c' <= i <= 'z') or ('C' <= i <= 'Z'):
+                y = chr(ord(i) - 3)
+            else:
+                y = chr(ord(i) + 23)
+        else:
+            i += y
+        ciphertext = ciphertext.replace(i, y)
+    return ciphertext
