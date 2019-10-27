@@ -94,27 +94,10 @@ def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:
     >>> find_empty_positions([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']])
     (2, 0)
     """
-    line = 0
-    mass = 0
-    token = True
-    for i in grid:
-        if token:
-            for z in i:
-                if z == '.':
-                    token = False
-                    break
-                mass += 1
-            if token:
-                mass = 0
-                line +=1
-        else:
-
-            break
-        if token:
-            return None
-        else:
-            return (mass,line)
-
+    for line in range(grid.len()):
+        for column in range(grid.len()):
+            if grid[line][column] == '.':
+                return line, column
 
 
 
