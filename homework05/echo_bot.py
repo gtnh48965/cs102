@@ -1,11 +1,11 @@
 import telebot
+import config
 
 
-access_token = # PUT YOUR ACCESS TOKEN HERE
-telegram.apihelper.proxy = {'https': 'https://23.237.22.172:3128'}
+telebot.apihelper.proxy = {'https': 'https://23.237.173.102:3128'}
 
 # Создание бота с указанным токеном доступа
-bot = telebot.TeleBot(access_token)
+bot = telebot.TeleBot(config.token)
 
 
 # Бот будет отвечать только на текстовые сообщения
@@ -14,5 +14,7 @@ def echo(message: str) -> None:
     bot.send_message(message.chat.id, message.text)
 
 
+
 if __name__ == '__main__':
-    bot.polling()
+    bot.polling(none_stop = True)
+
