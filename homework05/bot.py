@@ -6,7 +6,7 @@ import datetime
 from typing import List, Tuple
 import config
 
-telebot.apihelper.proxy = config.proxy
+#telebot.apihelper.proxy = config.proxy
 token = config.token
 
 no_les='пар нет'
