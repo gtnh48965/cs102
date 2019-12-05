@@ -76,7 +76,7 @@ def parse_schedule_for_a_weekday(web_page : str, day: str) -> Tuple[list, list, 
     if day == '2':
         day = 'tuesday'
     if day == '3':
-        day = 'wednesda'
+        day = 'wednesday'
     if day == '4':
         day = 'thursday'
     if day == '5':
@@ -91,7 +91,7 @@ def parse_schedule_for_a_weekday(web_page : str, day: str) -> Tuple[list, list, 
         schedule_table = soup.find("table", attrs={"id": "1day"})
     if day == 'tuesday':
         schedule_table = soup.find("table", attrs={"id": "2day"})
-    if day == 'wednesda':
+    if day == 'wednesday':
         schedule_table = soup.find("table", attrs={"id": "3day"})
     if day == 'thursday':
         schedule_table = soup.find("table", attrs={"id": "4day"})
@@ -241,7 +241,7 @@ def get_tommorow(message):
         web_page = get_page(group, week)
         if web_page:
 
-            pars = parse_schedule_for_a_weekday(web_page, day)
+            pars = parse_schedule_for_a_weekday(web_page, str(day))
             if pars:
                 times_lst, locations_lst, lessons_lst = pars
                 resp = ''
