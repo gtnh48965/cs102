@@ -46,7 +46,7 @@ def get_friends(user_id, fields=''):
 
     query = f'{domain}/friends.get?user_id={user_id}&fields={fields}&access_token={access_token}&v={v}'
     response = requests.get(query)
-    return response.json()['response']['items']
+    return response.json()['response']
 
 
 
@@ -63,3 +63,26 @@ def messages_get_history(user_id, offset=0, count=20):
     assert offset >= 0, "user_id must be positive integer"
     assert count >= 0, "user_id must be positive integer"
     # PUT YOUR CODE HERE
+
+def get_friee(user_id, fields='sex'):
+    """ Вернуть данных о друзьях пользователя
+
+    :param user_id: идентификатор пользователя, список друзей которого нужно получить
+    :param fields: список полей, которые нужно получить для каждого пользователя
+    """
+    assert isinstance(user_id, int), "user_id must be positive integer"
+    assert isinstance(fields, str), "fields must be string"
+    assert user_id > 0, "user_id must be positive integer"
+    # PUT YOUR CODE HERE
+    domain = config.VK_CONFIG['domain']
+    access_token = config.VK_CONFIG['access_token']
+    v = '5.103'
+    res = []
+    query = f'{domain}/friends.get?user_id={user_id}&fields={fields}&access_token={access_token}&v={v}'
+    response = requests.get(query)
+    s = response.json()['response']
+    namber = response.json()['response']['count']
+    for i in range(0, namber):
+        sa = s['items'][i]['last_name']
+        res.append(sa)
+    return res
