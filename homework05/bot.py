@@ -53,13 +53,14 @@ def get_parity(day: datetime.date) -> int:
 
 
 def get_page(group: str, week:str='') ->str:
+    dom = 'http://www.ifmo.ru/ru/schedule'
 
     if week == '0':
         week = ''
     if week:
         week = str(week) + '/'
     url = '{domain}/0/{group}/{week}raspisanie_zanyatiy_{group}.htm'.format(
-        domain = config.dom,
+        domain = dom,
         group = group,
         week = week)
     response = requests.get(url)
@@ -150,7 +151,7 @@ def get_schedule(message):
         week = day[2]
     web_page = get_page(group, week)
     times_lst, locations_lst, lessons_lst =\
-        parse_schedule_for_a_weekday(web_page, days)
+        parse_schedule_for_a_weekday(web_page, str(day))
     resp = ''
 
     for time, location,  lession in zip(times_lst, locations_lst,   lessons_lst):

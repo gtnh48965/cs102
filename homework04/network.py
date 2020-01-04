@@ -3,7 +3,7 @@ import igraph
 from igraph import Graph, plot
 from time import sleep
 from api import get_friends
-
+from stopwords import get_stop_words
 
 def get_friend_ids(user_id):
     for i in range(10):
@@ -47,10 +47,8 @@ def get_network(user_id, as_edgelist=True):
 
     g.simplify(multiple=True, loops=True)
     communities = g.community_fastgreedy()
-    # communities = g.community_edge_betweenness(directed=False)
     clusters = communities.as_clustering()
     pal = igraph.drawing.colors.ClusterColoringPalette(len(clusters))
     g.vs['color'] = pal.get_many(clusters.membership)
 
-    # Отрисовываем граф
     plot(g, **visual_style)
