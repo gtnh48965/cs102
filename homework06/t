@@ -1,0 +1,112 @@
+import requests
+from bs4 import BeautifulSoup
+from time import sleep
+
+
+def extract_news(parser):
+    """ Extract news from a given web page """
+    global comentss
+    title = []
+    coments = []
+    url = []
+    point = []
+    autor = []
+    comentss = []
+    line = parser.find_all('a', {'storylink'})
+    aut = parser.find_all('span', {"sitestr"})
+    poi = parser.find_all('span', {"score"})
+    au = parser.find_all('a', {'hnuser'})
+    com = parser.find_all('td', {"subtext"})
+
+
+    for hit in line:
+        title.append(hit.text)
+    # print(title)
+
+    for a in aut:
+        url.append(a.text)
+    # print (url)
+    poin=[]
+    for i in poi:
+        point.append(i.text)
+    # print (point)
+    for pd in point:
+        remove = pd.replace(" points", "")
+        poin.append(remove)
+    # print(poin)
+    for js in au:
+        autor.append(js.text)
+    # print (autor)
+    s = []
+    for ss in com:
+        for ls in ss:
+            s.append(ls)
+
+    for lp in range(11, 381, 13):
+        coments.append(s[lp])
+
+    list2 = []
+
+    for item in coments:
+        if item != ' ':
+            list2.append(item)
+
+    for lol in list2:
+        comentss.append(lol.text)
+        print(lol)
+    cam=[]
+
+    for j in comentss:
+
+        remove = j.replace("\xa0comments","")
+        cam.append(remove)
+
+    m=len(coments)
+
+
+
+
+    zs = []
+
+    for i in range(m):
+        zs.append({'author': (autor[i]),
+                   'comments': (cam[i]),
+                   'points': (poin[i]),
+                   'title': (title[i]),
+                   'url': (url[i])})
+
+
+    parser = zs
+
+
+
+
+
+    return parser
+
+
+def extract_next_page(parser):
+    """ Extract next page URL """
+    # PUT YOUR CODE HERE
+    return parser.find_all('a', {'morelink'})
+
+
+
+
+def get_news(url="https://news.ycombinator.com/newest", n_pages=10):
+    """ Collect news from a given web page """
+    news = []
+
+    while n_pages:
+        print("Collecting data from page: {}".format(url))
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, "html.parser")
+        news_list = extract_news(soup)
+        next_page = extract_next_page(soup)
+        url = "https://news.ycombinator.com/" + next_page
+        news.extend(news_list)
+        sleep(5)
+        n_pages -= 1
+
+
+    return news

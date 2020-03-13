@@ -3,7 +3,7 @@ import igraph
 from igraph import Graph, plot
 from time import sleep
 from api import get_friends
-from stopwords import get_stop_words
+#from stopwords import get_stop_words
 
 def get_friend_ids(user_id):
     for i in range(10):
