@@ -82,7 +82,7 @@ def extract_next_page(parser):
 
 
 
-def get_news(url="https://news.ycombinator.com/newest", n_pages=33):
+def get_news(url="https://news.ycombinator.com/newest", n_pages=35):
     """ Collect news from a given web page """
     news = []
 
